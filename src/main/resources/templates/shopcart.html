@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="layout/layout"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout ">
+<head>
+
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container main-content">
+        <div class="row">
+            <p>Produkty w koszyku</p>
+            <th:block th:each="product : ${shopcart.products}">
+                <p th:text="${product}"></p>
+            </th:block>
+            <button><a th:href="@{'/shopcart/placeorder'}">Zamów</a></button>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

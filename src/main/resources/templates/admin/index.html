@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.w3.org/1999/xhtml"
+      layout:decorate="layout/layout"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout ">
+<head>
+
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container main-content">
+        <div class="row">
+            Admin
+            <form th:action="@{/admin/product}" method="post" th:object="${product}">
+                <br>Nazwa produktu
+                <br><input type="text" th:field="*{name}" placeholder="product name" class="" />
+                <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
+                <br>Opis produktu
+                <br><input type="text" th:field="*{description}" placeholder="product description" class="" />
+                <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Description Error</div>
+                <br>Cena produktu
+                <br><input type="number" th:field="*{price}" placeholder="product price" class="" />
+                <div th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Price Error</div>
+            <br><button type="submit">Submit</button></form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

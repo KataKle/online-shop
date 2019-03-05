@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.w3.org/1999/xhtml"
+      layout:decorate="layout/layout"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout ">
+
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container main-content">
+        <div class="row">
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                <th:block th:each="order,iter : ${orders}">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingOne">
+                            <h4 class="panel-title">
+                                <a role="button" data-toggle="collapse" data-parent="#accordion"
+                                   th:href="'#collapse'+${iter.index}"
+                                   aria-expanded="true"
+                                   th:attr="aria-controls='collapse' + ${iter.index}"
+                                   th:text="${'Numer zamówienia: ' + order.id + ', Data złożenia zamówienia: ' +order.date}">TEXT</a>
+                            </h4>
+                        </div>
+                        <div th:attr="id='collapse'+${iter.index}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="panel-body">
+                                <th:block th:each="product : ${order.products}">
+                                    <p th:text="${product.name + ',' + product.description + ', ' + product.price}"></p>
+                                </th:block>
+                            </div>
+                        </div>
+                    </div>
+                </th:block>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
